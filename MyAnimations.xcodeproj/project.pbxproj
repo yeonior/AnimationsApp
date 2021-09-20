@@ -10,7 +10,6 @@
 		A2981BFA26F7685700360BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2981BF926F7685700360BAD /* AppDelegate.swift */; };
 		A2981BFC26F7685700360BAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2981BFB26F7685700360BAD /* SceneDelegate.swift */; };
 		A2981BFE26F7685700360BAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2981BFD26F7685700360BAD /* ViewController.swift */; };
-		A2981C0126F7685700360BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2981BFF26F7685700360BAD /* Main.storyboard */; };
 		A2981C0326F7685800360BAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2981C0226F7685800360BAD /* Assets.xcassets */; };
 		A2981C0626F7685800360BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2981C0426F7685800360BAD /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		A2981BF926F7685700360BAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2981BFB26F7685700360BAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A2981BFD26F7685700360BAD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A2981C0026F7685700360BAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2981C0226F7685800360BAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2981C0526F7685800360BAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2981C0726F7685800360BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +35,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A206D1D226F8B2450055F6E7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A2981C0226F7685800360BAD /* Assets.xcassets */,
+				A2981C0426F7685800360BAD /* LaunchScreen.storyboard */,
+				A2981C0726F7685800360BAD /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		A2981BED26F7685700360BAD = {
 			isa = PBXGroup;
 			children = (
@@ -59,10 +67,7 @@
 				A2981BF926F7685700360BAD /* AppDelegate.swift */,
 				A2981BFB26F7685700360BAD /* SceneDelegate.swift */,
 				A2981BFD26F7685700360BAD /* ViewController.swift */,
-				A2981BFF26F7685700360BAD /* Main.storyboard */,
-				A2981C0226F7685800360BAD /* Assets.xcassets */,
-				A2981C0426F7685800360BAD /* LaunchScreen.storyboard */,
-				A2981C0726F7685800360BAD /* Info.plist */,
+				A206D1D226F8B2450055F6E7 /* Support */,
 			);
 			path = MyAnimations;
 			sourceTree = "<group>";
@@ -126,7 +131,6 @@
 			files = (
 				A2981C0626F7685800360BAD /* LaunchScreen.storyboard in Resources */,
 				A2981C0326F7685800360BAD /* Assets.xcassets in Resources */,
-				A2981C0126F7685700360BAD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,14 +150,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A2981BFF26F7685700360BAD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A2981C0026F7685700360BAD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A2981C0426F7685800360BAD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -288,7 +284,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U3JHK4U826;
-				INFOPLIST_FILE = MyAnimations/Info.plist;
+				INFOPLIST_FILE = MyAnimations/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +303,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U3JHK4U826;
-				INFOPLIST_FILE = MyAnimations/Info.plist;
+				INFOPLIST_FILE = MyAnimations/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
