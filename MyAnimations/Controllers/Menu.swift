@@ -13,7 +13,7 @@ final class Menu: UIViewController {
     static let animationArray: [MyItemModel] = [
         MyItemModel(name: "Movement", imageName: "arrow.down.right")
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,6 +78,23 @@ extension Menu: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
         }
         
         return UICollectionViewCell()
+    }
+    
+    // MARK: - Delegate
+    
+    // pushing a specific view controller
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        var vc = UIViewController()
+        vc.view.backgroundColor = .systemBackground
+        switch indexPath.row {
+        case 0:
+            vc = UIViewController()
+            vc.view.backgroundColor = .red
+        default:
+            break
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Flow layout delegate
