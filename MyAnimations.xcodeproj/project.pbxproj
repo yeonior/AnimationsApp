@@ -53,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				A2981BFD26F7685700360BAD /* Menu.swift */,
-				A206D1D426F8B69A0055F6E7 /* MyItem.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -64,6 +63,14 @@
 				A206D1D626F8CE1B0055F6E7 /* MyItemModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A206D1D926F8D2890055F6E7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A206D1D426F8B69A0055F6E7 /* MyItem.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A2981BED26F7685700360BAD = {
@@ -88,6 +95,7 @@
 				A2981BF926F7685700360BAD /* AppDelegate.swift */,
 				A2981BFB26F7685700360BAD /* SceneDelegate.swift */,
 				A206D1D826F8CE1F0055F6E7 /* Models */,
+				A206D1D926F8D2890055F6E7 /* Views */,
 				A206D1D326F8B3490055F6E7 /* Controllers */,
 				A206D1D226F8B2450055F6E7 /* Support */,
 			);

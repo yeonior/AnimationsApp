@@ -71,6 +71,9 @@ extension Menu: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyItem.identifier, for: indexPath) as? MyItem {
             
+            cell.setUpData(name: Menu.animationArray[indexPath.row].name,
+                           imageName: Menu.animationArray[indexPath.row].imageName)
+            
             return cell
         }
         
