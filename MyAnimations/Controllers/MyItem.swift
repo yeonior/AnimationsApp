@@ -1,5 +1,5 @@
 //
-//  MyCell.swift
+//  MyItem.swift
 //  MyAnimations
 //
 //  Created by ruslan on 20.09.2021.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-// MARK: Cell size constants
-struct MyCellSizeConstants {
+// MARK: Item size constants
+struct MyItemSizeConstants {
     static let spacing: CGFloat = UIScreen.main.bounds.width * 0.05
-    static let itemSide: CGFloat = (UIScreen.main.bounds.width - spacing * 3) / 2
+    static let side: CGFloat = (UIScreen.main.bounds.width - spacing * 3) / 2
 }
 
-final class MyCell: UICollectionViewCell {
+final class MyItem: UICollectionViewCell {
     
-    static let identifier = "MyCell"
+    static let identifier = "MyItem"
     
     override init(frame: CGRect) {
         super.init(frame: frame)

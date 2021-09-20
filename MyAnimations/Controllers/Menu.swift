@@ -10,6 +10,9 @@ import UIKit
 final class Menu: UIViewController {
     
     private var myCollectionView: UICollectionView?
+    static let animationArray: [MyItemModel] = [
+        MyItemModel(name: "Movement", imageName: "arrow.down.right")
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +27,18 @@ final class Menu: UIViewController {
         // layout
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = MyCellSizeConstants.spacing
-        layout.minimumLineSpacing = MyCellSizeConstants.spacing
+        layout.minimumInteritemSpacing = MyItemSizeConstants.spacing
+        layout.minimumLineSpacing = MyItemSizeConstants.spacing
         
         // init and insets
         myCollectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
-        myCollectionView?.contentInset = UIEdgeInsets(top: MyCellSizeConstants.spacing,
-                                                      left: MyCellSizeConstants.spacing,
-                                                      bottom: MyCellSizeConstants.spacing,
-                                                      right: MyCellSizeConstants.spacing)
+        myCollectionView?.contentInset = UIEdgeInsets(top: MyItemSizeConstants.spacing,
+                                                      left: MyItemSizeConstants.spacing,
+                                                      bottom: MyItemSizeConstants.spacing,
+                                                      right: MyItemSizeConstants.spacing)
         
         guard let collectionView = myCollectionView else { return }
-        collectionView.register(MyCell.self, forCellWithReuseIdentifier: MyCell.identifier)
+        collectionView.register(MyItem.self, forCellWithReuseIdentifier: MyItem.identifier)
         
         // protocols
         collectionView.dataSource = self
@@ -60,13 +63,13 @@ extension Menu: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
     
     // number of section
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        12
+        Menu.animationArray.count
     }
     
     // MARK: Cell configuring
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCell.identifier, for: indexPath) as? MyCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyItem.identifier, for: indexPath) as? MyItem {
             
             return cell
         }
@@ -79,7 +82,7 @@ extension Menu: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
     // size for each item
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: MyCellSizeConstants.itemSide,
-                      height: MyCellSizeConstants.itemSide)
+        return CGSize(width: MyItemSizeConstants.side,
+                      height: MyItemSizeConstants.side)
     }
 }
