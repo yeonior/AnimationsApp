@@ -28,8 +28,9 @@ final class BasicAnimations: UIViewController {
     }
     
     // MARK: - Init
-    init(animationType: AnimationType) {
+    init(title: String, animationType: AnimationType) {
         super.init(nibName: nil, bundle: nil)
+        self.title = title
         self.animationType = animationType
     }
     

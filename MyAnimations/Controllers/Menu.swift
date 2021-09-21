@@ -86,8 +86,9 @@ extension Menu: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
     // pushing a specific view controller
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let title = Menu.animationArray[indexPath.row].name
         let type = Menu.animationArray[indexPath.row].animationType
-        let vc = BasicAnimations(animationType: type)
+        let vc = BasicAnimations(title: title, animationType: type)
         navigationController?.pushViewController(vc, animated: true)
     }
     
