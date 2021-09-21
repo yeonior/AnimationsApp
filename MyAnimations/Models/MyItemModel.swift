@@ -8,10 +8,10 @@
 import Foundation
 
 enum AnimationType {
-    case movement
+    case centering
     case appearing
     case rotation
-    case scale
+    case scaling
 }
 
 struct MyItemModel {

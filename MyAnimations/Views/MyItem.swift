@@ -32,7 +32,7 @@ final class MyItem: UICollectionViewCell {
         let label = UILabel()
         label.text = "n/a"
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.7
@@ -66,7 +66,7 @@ final class MyItem: UICollectionViewCell {
         nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 12).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
-        nameLabel.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.25).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.3).isActive = true
     }
     
     required init?(coder: NSCoder) {
