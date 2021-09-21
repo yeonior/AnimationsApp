@@ -11,6 +11,7 @@ enum AnimationType {
     case movement
     case appearing
     case rotation
+    case scale
 }
 
 struct MyItemModel {

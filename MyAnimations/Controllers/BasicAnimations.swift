@@ -47,7 +47,7 @@ final class BasicAnimations: UIViewController {
         // choosing animation
         switch animationType {
         case .movement:
-            square.frame.origin.x = 100
+            square.frame.origin.x = 10
             square.frame.origin.y = 100
             UIView.animate(withDuration: 2.0) {
                 self.square.center = self.view.center
@@ -60,6 +60,10 @@ final class BasicAnimations: UIViewController {
         case .rotation:
             UIView.animate(withDuration: 2.0) {
                 self.square.transform = CGAffineTransform(rotationAngle: .pi)
+            }
+        case .scale:
+            UIView.animate(withDuration: 2.0) {
+                self.square.transform = CGAffineTransform(scaleX: 2, y: 2)
             }
         }
     }

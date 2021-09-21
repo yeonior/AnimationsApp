@@ -13,7 +13,8 @@ final class Menu: UIViewController {
     static let animationArray: [MyItemModel] = [
         MyItemModel(name: "Movement", imageName: "arrow.down.right", animationType: .movement),
         MyItemModel(name: "Appearing", imageName: "rays", animationType: .appearing),
-        MyItemModel(name: "Rotation", imageName: "arrow.clockwise", animationType: .rotation)
+        MyItemModel(name: "Rotation", imageName: "arrow.clockwise", animationType: .rotation),
+        MyItemModel(name: "Scale", imageName: "arrow.up.left.and.arrow.down.right", animationType: .scale)
     ]
     
     override func viewDidLoad() {
