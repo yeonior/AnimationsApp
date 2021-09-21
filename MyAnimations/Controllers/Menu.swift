@@ -11,7 +11,8 @@ final class Menu: UIViewController {
     
     private var myCollectionView: UICollectionView?
     static let animationArray: [MyItemModel] = [
-        MyItemModel(name: "Movement", imageName: "arrow.down.right", animationType: .movement)
+        MyItemModel(name: "Movement", imageName: "arrow.down.right", animationType: .movement),
+        MyItemModel(name: "Appearing", imageName: "rays", animationType: .appearing)
     ]
     
     override func viewDidLoad() {

@@ -9,6 +9,7 @@ import Foundation
 
 enum AnimationType {
     case movement
+    case appearing
 }
 
 struct MyItemModel {

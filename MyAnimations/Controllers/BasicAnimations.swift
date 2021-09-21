@@ -16,7 +16,7 @@ final class BasicAnimations: UIViewController {
         label.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         label.backgroundColor = .red
         label.clipsToBounds = true
-        label.layer.cornerRadius = 16
+        label.layer.cornerRadius = 20
         return label
     }()
 
@@ -47,6 +47,12 @@ final class BasicAnimations: UIViewController {
         case .movement:
             UIView.animate(withDuration: 2.0) {
                 self.square.center = self.view.center
+            }
+        case .appearing:
+            self.square.center = self.view.center
+            self.square.alpha = 0.0
+            UIView.animate(withDuration: 2.0) {
+                self.square.alpha = 1.0
             }
         }
     }
