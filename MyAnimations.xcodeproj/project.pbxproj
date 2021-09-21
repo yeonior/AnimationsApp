@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A206D1D526F8B69A0055F6E7 /* MyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A206D1D426F8B69A0055F6E7 /* MyItem.swift */; };
 		A206D1D726F8CE1B0055F6E7 /* MyItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A206D1D626F8CE1B0055F6E7 /* MyItemModel.swift */; };
+		A25F7F0A26F9D3B30061BCB3 /* BasicAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25F7F0926F9D3B30061BCB3 /* BasicAnimations.swift */; };
 		A2981BFA26F7685700360BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2981BF926F7685700360BAD /* AppDelegate.swift */; };
 		A2981BFC26F7685700360BAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2981BFB26F7685700360BAD /* SceneDelegate.swift */; };
 		A2981BFE26F7685700360BAD /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2981BFD26F7685700360BAD /* Menu.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		A206D1D426F8B69A0055F6E7 /* MyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItem.swift; sourceTree = "<group>"; };
 		A206D1D626F8CE1B0055F6E7 /* MyItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemModel.swift; sourceTree = "<group>"; };
+		A25F7F0926F9D3B30061BCB3 /* BasicAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAnimations.swift; sourceTree = "<group>"; };
 		A2981BF626F7685700360BAD /* MyAnimations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAnimations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2981BF926F7685700360BAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2981BFB26F7685700360BAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				A2981BFD26F7685700360BAD /* Menu.swift */,
+				A25F7F0926F9D3B30061BCB3 /* BasicAnimations.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				A2981BFA26F7685700360BAD /* AppDelegate.swift in Sources */,
 				A2981BFC26F7685700360BAD /* SceneDelegate.swift in Sources */,
 				A206D1D726F8CE1B0055F6E7 /* MyItemModel.swift in Sources */,
+				A25F7F0A26F9D3B30061BCB3 /* BasicAnimations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

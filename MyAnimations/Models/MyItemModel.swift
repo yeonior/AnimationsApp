@@ -7,7 +7,12 @@
 
 import Foundation
 
+enum AnimationType {
+    case movement
+}
+
 struct MyItemModel {
     var name: String
     var imageName: String
+    var animationType: AnimationType
 }

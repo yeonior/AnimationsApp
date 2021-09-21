@@ -11,7 +11,7 @@ final class Menu: UIViewController {
     
     private var myCollectionView: UICollectionView?
     static let animationArray: [MyItemModel] = [
-        MyItemModel(name: "Movement", imageName: "arrow.down.right")
+        MyItemModel(name: "Movement", imageName: "arrow.down.right", animationType: .movement)
     ]
     
     override func viewDidLoad() {
@@ -85,15 +85,8 @@ extension Menu: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
     // pushing a specific view controller
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        var vc = UIViewController()
-        vc.view.backgroundColor = .systemBackground
-        switch indexPath.row {
-        case 0:
-            vc = UIViewController()
-            vc.view.backgroundColor = .red
-        default:
-            break
-        }
+        let type = Menu.animationArray[indexPath.row].animationType
+        let vc = BasicAnimations(animationType: type)
         navigationController?.pushViewController(vc, animated: true)
     }
     
