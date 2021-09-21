@@ -13,7 +13,7 @@ final class BasicAnimations: UIViewController {
     
     private let square: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+        label.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50, width: 100, height: 100)
         label.backgroundColor = .red
         label.clipsToBounds = true
         label.layer.cornerRadius = 20
@@ -44,16 +44,22 @@ final class BasicAnimations: UIViewController {
         
         view.addSubview(square)
         
+        // choosing animation
         switch animationType {
         case .movement:
+            square.frame.origin.x = 100
+            square.frame.origin.y = 100
             UIView.animate(withDuration: 2.0) {
                 self.square.center = self.view.center
             }
         case .appearing:
-            self.square.center = self.view.center
             self.square.alpha = 0.0
             UIView.animate(withDuration: 2.0) {
                 self.square.alpha = 1.0
+            }
+        case .rotation:
+            UIView.animate(withDuration: 2.0) {
+                self.square.transform = CGAffineTransform(rotationAngle: .pi)
             }
         }
     }
