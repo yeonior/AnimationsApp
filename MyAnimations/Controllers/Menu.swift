@@ -16,7 +16,8 @@ final class Menu: UIViewController {
         MyItemModel(name: "Rotation", imageName: "arrow.clockwise", animationType: .rotation),
         MyItemModel(name: "Scaling", imageName: "arrow.up.left.and.arrow.down.right", animationType: .scaling),
         MyItemModel(name: "Translation", imageName: "arrow.down.right", animationType: .translation),
-        MyItemModel(name: "Identity", imageName: "arrowshape.turn.up.backward", animationType: .identity)
+        MyItemModel(name: "Identity", imageName: "arrowshape.turn.up.backward", animationType: .identity),
+        MyItemModel(name: "Repeating", imageName: "repeat", animationType: .repeating)
     ]
     
     override func viewDidLoad() {

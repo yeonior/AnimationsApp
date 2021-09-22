@@ -82,6 +82,10 @@ final class BasicAnimations: UIViewController {
                     self.square.transform = .identity
                 }
             }
+        case .repeating:
+            UIView.animateKeyframes(withDuration: 1.0, delay: 0.2, options: .repeat) {
+                self.square.transform = CGAffineTransform(rotationAngle: -(3 * .pi) / 2)
+            }
         }
     }
 }
