@@ -72,6 +72,16 @@ final class BasicAnimations: UIViewController {
             UIView.animate(withDuration: 2.0) {
                 self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50)
             }
+        case .identity:
+            UIView.animate(withDuration: 1.0) {
+                self.square.transform = CGAffineTransform(rotationAngle: .pi)
+                    .scaledBy(x: 1.5, y: 1.5)
+                    .translatedBy(x: 50, y: 50)
+            } completion: { _ in
+                UIView.animate(withDuration: 1.0) {
+                    self.square.transform = .identity
+                }
+            }
         }
     }
 }
