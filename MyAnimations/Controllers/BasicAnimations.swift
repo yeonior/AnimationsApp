@@ -86,6 +86,12 @@ final class BasicAnimations: UIViewController {
             UIView.animateKeyframes(withDuration: 1.0, delay: 0.2, options: .repeat) {
                 self.square.transform = CGAffineTransform(rotationAngle: -(3 * .pi) / 2)
             }
+        case .reversing:
+            UIView.animateKeyframes(withDuration: 1.0, delay: 0.2, options: .autoreverse) {
+                self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: 0)
+            } completion: { _ in
+                self.square.isHidden = true
+            }
         }
     }
 }
