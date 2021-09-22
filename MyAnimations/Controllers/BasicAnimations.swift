@@ -13,7 +13,10 @@ final class BasicAnimations: UIViewController {
     
     private let square: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50, width: 100, height: 100)
+        label.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
+                             y: UIScreen.main.bounds.height / 2 - 50,
+                             width: 100,
+                             height: 100)
         label.backgroundColor = .systemPink
         label.clipsToBounds = true
         label.layer.cornerRadius = 20
@@ -64,6 +67,10 @@ final class BasicAnimations: UIViewController {
         case .scaling:
             UIView.animate(withDuration: 2.0) {
                 self.square.transform = CGAffineTransform(scaleX: 2, y: 2)
+            }
+        case .translation:
+            UIView.animate(withDuration: 2.0) {
+                self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50)
             }
         }
     }

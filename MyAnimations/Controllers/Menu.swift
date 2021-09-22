@@ -14,7 +14,8 @@ final class Menu: UIViewController {
         MyItemModel(name: "Centering", imageName: "arrow.down.forward.and.arrow.up.backward.circle", animationType: .centering),
         MyItemModel(name: "Appearing", imageName: "rays", animationType: .appearing),
         MyItemModel(name: "Rotation", imageName: "arrow.clockwise", animationType: .rotation),
-        MyItemModel(name: "Scaling", imageName: "arrow.up.left.and.arrow.down.right", animationType: .scaling)
+        MyItemModel(name: "Scaling", imageName: "arrow.up.left.and.arrow.down.right", animationType: .scaling),
+        MyItemModel(name: "Translation", imageName: "arrow.down.right", animationType: .translation)
     ]
     
     override func viewDidLoad() {
