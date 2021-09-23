@@ -16,6 +16,7 @@ enum AnimationType {
     case identity
     case repeating
     case reversing
+    case coloring
 }
 
 struct MyItemModel {

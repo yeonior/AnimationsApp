@@ -92,6 +92,10 @@ final class BasicAnimations: UIViewController {
             } completion: { _ in
                 self.square.isHidden = true
             }
+        case .coloring:
+            UIView.animate(withDuration: 2.0) {
+                self.square.backgroundColor = .purple
+            }
         }
     }
 }
