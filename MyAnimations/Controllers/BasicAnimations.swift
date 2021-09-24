@@ -115,6 +115,14 @@ final class BasicAnimations: UIViewController {
                     self.square.transform = .identity
                 }
             })
+        case .spring:
+            UIView.animate(withDuration: 14.0,
+                           delay: 1.0,
+                           usingSpringWithDamping: 0.07,
+                           initialSpringVelocity: 1.0,
+                           options: .curveLinear) {
+                self.square.transform = CGAffineTransform(translationX: 0, y: 100)
+            }
         }
     }
 }
