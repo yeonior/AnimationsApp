@@ -58,7 +58,6 @@
 			children = (
 				A2981BFD26F7685700360BAD /* Menu.swift */,
 				A25F7F0926F9D3B30061BCB3 /* BasicAnimations.swift */,
-				A2EE0F9426FE08A50085F7D2 /* UIScrollView + Extensions.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -103,9 +102,18 @@
 				A206D1D826F8CE1F0055F6E7 /* Models */,
 				A206D1D926F8D2890055F6E7 /* Views */,
 				A206D1D326F8B3490055F6E7 /* Controllers */,
+				A2EE0F9626FE0E7A0085F7D2 /* Extensions */,
 				A206D1D226F8B2450055F6E7 /* Support */,
 			);
 			path = MyAnimations;
+			sourceTree = "<group>";
+		};
+		A2EE0F9626FE0E7A0085F7D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A2EE0F9426FE08A50085F7D2 /* UIScrollView + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
