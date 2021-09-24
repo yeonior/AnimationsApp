@@ -11,8 +11,8 @@ final class BasicAnimations: UIViewController {
     
     private var animationType: AnimationType?
     
-    private let square: UILabel = {
-        let label = UILabel()
+    private let square: UIView = {
+        let label = UIView()
         label.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
                              y: UIScreen.main.bounds.height / 2 - 50,
                              width: 100,
