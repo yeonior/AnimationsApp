@@ -92,10 +92,29 @@ final class BasicAnimations: UIViewController {
             } completion: { _ in
                 self.square.isHidden = true
             }
-        case .coloring:
-            UIView.animate(withDuration: 2.0) {
-                self.square.backgroundColor = .purple
-            }
+        case .sequence:
+            UIView.animateKeyframes(withDuration: 2.0, delay: 0.0, options: .calculationModeLinear, animations: {
+
+                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 125/1000) {
+                    self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: 0)
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 125/1000, relativeDuration: 250/1000) {
+                    self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50)
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 375/1000, relativeDuration: 250/1000) {
+                    self.square.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width / 2 + 50, y: UIScreen.main.bounds.height / 2 - 50)
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 625/1000, relativeDuration: 250/1000) {
+                    self.square.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width / 2 + 50, y: 0)
+                }
+                
+                UIView.addKeyframe(withRelativeStartTime: 875/1000, relativeDuration: 125/1000) {
+                    self.square.transform = .identity
+                }
+            })
         }
     }
 }
