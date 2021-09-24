@@ -72,6 +72,10 @@ final class BasicAnimations: UIViewController {
             UIView.animate(withDuration: 2.0) {
                 self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50)
             }
+        case .coloring:
+            UIView.animate(withDuration: 1.0) {
+                self.square.backgroundColor = .systemIndigo
+            }
         case .identity:
             UIView.animate(withDuration: 1.0) {
                 self.square.transform = CGAffineTransform(rotationAngle: .pi)
