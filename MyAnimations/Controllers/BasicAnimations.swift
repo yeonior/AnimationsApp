@@ -10,7 +10,7 @@ import UIKit
 final class BasicAnimations: UIViewController {
     
     private var animationType: AnimationType?
-    
+    private var animator: UIViewPropertyAnimator?
     private let square: UIView = {
         let label = UIView()
         label.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
@@ -22,12 +22,31 @@ final class BasicAnimations: UIViewController {
         label.layer.cornerRadius = 20
         return label
     }()
+    
+    private let mySlider: UISlider = {
+        let slider = UISlider()
+        slider.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
+                              y: UIScreen.main.bounds.height / 2 + 200,
+                              width: 200,
+                              height: 50)
+        slider.maximumValue = 100.0
+        slider.minimumValue = 0.0
+        slider.value = 0.0
+        return slider
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
+        mySlider.addTarget(self, action: #selector(sliderDidChange(_:)), for: .valueChanged)
         configureAnimation(with: animationType)
+    }
+    
+    // stopping the controlled animation before quit
+    override func viewWillDisappear(_ animated: Bool) {
+        guard let animator = animator else { return }
+        animator.stopAnimation(true)
     }
     
     // MARK: - Init
@@ -35,6 +54,7 @@ final class BasicAnimations: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.title = title
         self.animationType = animationType
+        self.animator = nil
     }
     
     required init?(coder: NSCoder) {
@@ -127,6 +147,20 @@ final class BasicAnimations: UIViewController {
                            options: .curveLinear) {
                 self.square.transform = CGAffineTransform(translationX: 0, y: 100)
             }
+        case .controlled:
+            view.addSubview(mySlider)
+            square.layer.cornerRadius = 50
+            animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut, animations: {
+                self.square.transform = CGAffineTransform(scaleX: 3.0, y: 3.0).rotated(by: -(3 * .pi) / 2)
+                self.square.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+                self.square.layer.cornerRadius = 0
+            })
         }
+    }
+    
+    // the animation cotrol
+    @objc private func sliderDidChange(_ sender: UISlider) {
+        guard let animator = animator else { return }
+        animator.fractionComplete = CGFloat(sender.value) / 100
     }
 }
