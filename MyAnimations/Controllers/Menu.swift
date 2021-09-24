@@ -10,6 +10,7 @@ import UIKit
 final class Menu: UIViewController {
     
     private var myCollectionView: UICollectionView?
+    private var firstAppearanceKey = false
     static let animationArray: [MyItemModel] = [
         MyItemModel(name: "Centering", imageName: "arrow.down.forward.and.arrow.up.backward.circle", animationType: .centering),
         MyItemModel(name: "Appearing", imageName: "rays", animationType: .appearing),
@@ -28,6 +29,15 @@ final class Menu: UIViewController {
         
         title = "Animations"
         configureCollectionView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // autoscrolling to bottom
+        if !firstAppearanceKey {
+            firstAppearanceKey = true
+            myCollectionView?.scrollsToBottom(animated: false)
+        }
     }
     
     // MARK: - Collection view configuring

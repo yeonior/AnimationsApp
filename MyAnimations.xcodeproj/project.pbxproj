@@ -15,6 +15,7 @@
 		A2981BFE26F7685700360BAD /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2981BFD26F7685700360BAD /* Menu.swift */; };
 		A2981C0326F7685800360BAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2981C0226F7685800360BAD /* Assets.xcassets */; };
 		A2981C0626F7685800360BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2981C0426F7685800360BAD /* LaunchScreen.storyboard */; };
+		A2EE0F9526FE08A50085F7D2 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EE0F9426FE08A50085F7D2 /* UIScrollView + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A2981C0226F7685800360BAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2981C0526F7685800360BAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2981C0726F7685800360BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2EE0F9426FE08A50085F7D2 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				A2981BFD26F7685700360BAD /* Menu.swift */,
 				A25F7F0926F9D3B30061BCB3 /* BasicAnimations.swift */,
+				A2EE0F9426FE08A50085F7D2 /* UIScrollView + Extensions.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				A2981BFE26F7685700360BAD /* Menu.swift in Sources */,
 				A206D1D526F8B69A0055F6E7 /* MyItem.swift in Sources */,
 				A2981BFA26F7685700360BAD /* AppDelegate.swift in Sources */,
+				A2EE0F9526FE08A50085F7D2 /* UIScrollView + Extensions.swift in Sources */,
 				A2981BFC26F7685700360BAD /* SceneDelegate.swift in Sources */,
 				A206D1D726F8CE1B0055F6E7 /* MyItemModel.swift in Sources */,
 				A25F7F0A26F9D3B30061BCB3 /* BasicAnimations.swift in Sources */,
