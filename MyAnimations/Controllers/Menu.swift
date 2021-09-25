@@ -108,7 +108,7 @@ extension Menu: UICollectionViewDelegate, UICollectionViewDataSource, UICollecti
         
         let title = Menu.animationArray[indexPath.row].name
         let type = Menu.animationArray[indexPath.row].animationType
-        let vc = BasicAnimations(title: title, animationType: type)
+        let vc = MyAnimations(title: title, animationType: type)
         navigationController?.pushViewController(vc, animated: true)
     }
     

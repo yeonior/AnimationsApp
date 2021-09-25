@@ -1,5 +1,5 @@
 //
-//  BasicAnimations.swift
+//  MyAnimations.swift
 //  MyAnimations
 //
 //  Created by ruslan on 21.09.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BasicAnimations: UIViewController {
+final class MyAnimations: UIViewController {
     
     private var animationType: AnimationType?
     private var animator: UIViewPropertyAnimator?
@@ -39,7 +39,7 @@ final class BasicAnimations: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        mySlider.addTarget(self, action: #selector(sliderDidChange(_:)), for: .valueChanged)
+        mySlider.addTarget(self, action: #selector(sliderValueDidChange(_:)), for: .valueChanged)
         configureAnimation(with: animationType)
     }
     
@@ -168,7 +168,7 @@ final class BasicAnimations: UIViewController {
     }
     
     // the animation cotrol
-    @objc private func sliderDidChange(_ sender: UISlider) {
+    @objc private func sliderValueDidChange(_ sender: UISlider) {
         guard let animator = animator else { return }
         animator.fractionComplete = CGFloat(sender.value) / 100
     }
