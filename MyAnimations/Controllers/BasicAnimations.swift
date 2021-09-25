@@ -69,31 +69,13 @@ final class BasicAnimations: UIViewController {
         
         // choosing animation
         switch animationType {
-        case .centering:
-            square.frame.origin.x = 10
-            square.frame.origin.y = 100
-            UIView.animate(withDuration: 2.0) {
-                self.square.center = self.view.center
-            }
         case .appearing:
             self.square.alpha = 0.0
             UIView.animate(withDuration: 2.0) {
                 self.square.alpha = 1.0
             }
-        case .rotation:
-            UIView.animate(withDuration: 2.0) {
-                self.square.transform = CGAffineTransform(rotationAngle: .pi)
-            }
-        case .scaling:
-            UIView.animate(withDuration: 2.0) {
-                self.square.transform = CGAffineTransform(scaleX: 2, y: 2)
-            }
-        case .translation:
-            UIView.animate(withDuration: 2.0) {
-                self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50)
-            }
         case .coloring:
-            UIView.animateKeyframes(withDuration: 1.5, delay: 0.0, options: [.repeat, .autoreverse, .calculationModeLinear]) {
+            UIView.animateKeyframes(withDuration: 1.5, delay: 0.0, options: .calculationModeLinear) {
                 
                 UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3) {
                     self.square.backgroundColor = .systemRed
@@ -104,6 +86,24 @@ final class BasicAnimations: UIViewController {
                 UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3) {
                     self.square.backgroundColor = .systemGreen
                 }
+            }
+        case .centering:
+            square.frame.origin.x = 10
+            square.frame.origin.y = 100
+            UIView.animate(withDuration: 2.0) {
+                self.square.center = self.view.center
+            }
+        case .translation:
+            UIView.animate(withDuration: 2.0) {
+                self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50)
+            }
+        case .rotation:
+            UIView.animate(withDuration: 2.0) {
+                self.square.transform = CGAffineTransform(rotationAngle: .pi)
+            }
+        case .scaling:
+            UIView.animate(withDuration: 2.0) {
+                self.square.transform = CGAffineTransform(scaleX: 2, y: 2)
             }
         case .identity:
             UIView.animate(withDuration: 1.0) {

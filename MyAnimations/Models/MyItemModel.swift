@@ -8,12 +8,12 @@
 import Foundation
 
 enum AnimationType {
-    case centering
     case appearing
+    case coloring
+    case centering
+    case translation
     case rotation
     case scaling
-    case translation
-    case coloring
     case identity
     case repeating
     case reversing
