@@ -34,7 +34,7 @@ final class BasicAnimations: UIViewController {
         slider.value = 0.0
         return slider
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -93,8 +93,17 @@ final class BasicAnimations: UIViewController {
                 self.square.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: UIScreen.main.bounds.height / 2 - 50)
             }
         case .coloring:
-            UIView.animate(withDuration: 1.0) {
-                self.square.backgroundColor = .systemIndigo
+            UIView.animateKeyframes(withDuration: 1.5, delay: 0.0, options: [.repeat, .autoreverse, .calculationModeLinear]) {
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3) {
+                    self.square.backgroundColor = .systemRed
+                }
+                UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
+                    self.square.backgroundColor = .systemYellow
+                }
+                UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3) {
+                    self.square.backgroundColor = .systemGreen
+                }
             }
         case .identity:
             UIView.animate(withDuration: 1.0) {
