@@ -164,7 +164,7 @@ final class MyAnimations: UIViewController {
                 self.square.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
                 self.square.layer.cornerRadius = 0
             })
-        case .byTapping:
+        case .tapGesture:
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
             square.addGestureRecognizer(tapGesture)
             animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut)
