@@ -23,7 +23,8 @@ final class Menu: UIViewController {
         MyItemModel(name: "Reversing", imageName: "arrow.left.arrow.right", animationType: .reversing),
         MyItemModel(name: "Sequence", imageName: "circle.grid.cross.right.fill", animationType: .sequence),
         MyItemModel(name: "Spring", imageName: "waveform.path.ecg", animationType: .spring),
-        MyItemModel(name: "Controlled", imageName: "switch.2", animationType: .controlled)
+        MyItemModel(name: "Controlled", imageName: "switch.2", animationType: .controlled),
+        MyItemModel(name: "By tapping", imageName: "hand.tap", animationType: .tapping)
     ]
     
     override func viewDidLoad() {

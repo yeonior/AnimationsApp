@@ -20,6 +20,7 @@ enum AnimationType {
     case sequence
     case spring
     case controlled
+    case tapping
 }
 
 struct MyItemModel {
