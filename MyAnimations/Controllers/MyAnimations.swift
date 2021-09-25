@@ -164,14 +164,10 @@ final class MyAnimations: UIViewController {
                 self.square.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
                 self.square.layer.cornerRadius = 0
             })
-        case .tapping:
+        case .byTapping:
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
             square.addGestureRecognizer(tapGesture)
-            animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut, animations: {
-                self.square.transform = CGAffineTransform(scaleX: 3.0, y: 3.0).rotated(by: -(3 * .pi) / 2)
-                self.square.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-                self.square.layer.cornerRadius = 0
-            })
+            animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut)
         }
     }
     
@@ -184,6 +180,14 @@ final class MyAnimations: UIViewController {
     // start the animation by tapping
     @objc private func didTap() {
         guard let animator = animator else { return }
+        animator.addAnimations {
+            self.square.transform = CGAffineTransform(scaleX: 3.0, y: 3.0).rotated(by: -(3 * .pi) / 2)
+            self.square.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+            self.square.layer.cornerRadius = 0
+        }
+        animator.addCompletion { _ in
+            self.square.alpha = 0.0
+        }
         animator.startAnimation()
     }
 }
