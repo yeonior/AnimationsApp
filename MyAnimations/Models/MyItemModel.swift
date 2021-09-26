@@ -21,7 +21,7 @@ enum AnimationType {
     case spring
     case controlled
     case tapGesture
-    case panGesture
+    case moving
 }
 
 struct MyItemModel {

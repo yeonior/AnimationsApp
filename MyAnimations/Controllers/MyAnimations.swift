@@ -168,7 +168,7 @@ final class MyAnimations: UIViewController {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
             square.addGestureRecognizer(tapGesture)
             animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut)
-        case .panGesture:
+        case .moving:
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
             square.addGestureRecognizer(panGesture)
             animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut)
@@ -195,7 +195,7 @@ final class MyAnimations: UIViewController {
         animator.startAnimation()
     }
     
-    // moving the square with a pan gesture
+    // moving the square
     @objc private func didPan(_ panGesture: UIPanGestureRecognizer) {
         guard let animator = animator else { return }
         let newPosition = panGesture.translation(in: self.view)
