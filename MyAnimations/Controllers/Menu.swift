@@ -24,7 +24,8 @@ final class Menu: UIViewController {
         MyItemModel(name: "Sequence", imageName: "circle.grid.cross.right.fill", animationType: .sequence),
         MyItemModel(name: "Spring", imageName: "waveform.path.ecg", animationType: .spring),
         MyItemModel(name: "Controlled", imageName: "switch.2", animationType: .controlled),
-        MyItemModel(name: "By tap gesture", imageName: "hand.tap", animationType: .tapGesture)
+        MyItemModel(name: "By tap gesture", imageName: "hand.tap", animationType: .tapGesture),
+        MyItemModel(name: "By pan gesture", imageName: "hand.draw", animationType: .panGesture)
     ]
     
     override func viewDidLoad() {

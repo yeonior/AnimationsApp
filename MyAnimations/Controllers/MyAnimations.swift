@@ -168,6 +168,10 @@ final class MyAnimations: UIViewController {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
             square.addGestureRecognizer(tapGesture)
             animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut)
+        case .panGesture:
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+            square.addGestureRecognizer(panGesture)
+            animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut)
         }
     }
     
@@ -188,6 +192,17 @@ final class MyAnimations: UIViewController {
         animator.addCompletion { _ in
             self.square.alpha = 0.0
         }
+        animator.startAnimation()
+    }
+    
+    // moving the square with a pan gesture
+    @objc private func didPan(_ panGesture: UIPanGestureRecognizer) {
+        guard let animator = animator else { return }
+        let newPosition = panGesture.translation(in: self.view)
+        let currentX = square.center.x
+        let currentY = square.center.y
+        square.center = CGPoint(x: currentX + newPosition.x, y: currentY + newPosition.y)
+        panGesture.setTranslation(.zero, in: self.view)
         animator.startAnimation()
     }
 }
