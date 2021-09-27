@@ -170,8 +170,17 @@ final class MyAnimations: UIViewController {
             animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut)
         case .moving:
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+            panGesture.name = "moving"
             square.addGestureRecognizer(panGesture)
             animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut)
+        case .panGesture:
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+            panGesture.name = "panGesture"
+            square.addGestureRecognizer(panGesture)
+            animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut, animations: {
+                self.square.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+                self.square.backgroundColor = .cyan
+            })
         }
     }
     
@@ -195,14 +204,31 @@ final class MyAnimations: UIViewController {
         animator.startAnimation()
     }
     
-    // moving the square
+    // the animation by a pan gesture
     @objc private func didPan(_ panGesture: UIPanGestureRecognizer) {
         guard let animator = animator else { return }
-        let newPosition = panGesture.translation(in: self.view)
-        let currentX = square.center.x
-        let currentY = square.center.y
-        square.center = CGPoint(x: currentX + newPosition.x, y: currentY + newPosition.y)
-        panGesture.setTranslation(.zero, in: self.view)
-        animator.startAnimation()
+        if panGesture.name == "moving" {
+            let newPosition = panGesture.translation(in: self.view)
+            let currentX = square.center.x
+            let currentY = square.center.y
+            square.center = CGPoint(x: currentX + newPosition.x, y: currentY + newPosition.y)
+            panGesture.setTranslation(.zero, in: self.view)
+            animator.startAnimation()
+        } else {
+            let translation = panGesture.translation(in: self.view)
+            let final = (view.bounds.height - square.bounds.height) / 2
+            
+            switch panGesture.state {
+            case .began:
+                animator.startAnimation()
+                animator.pauseAnimation()
+            case .changed:
+                animator.fractionComplete = -translation.y / final
+                animator.pauseAnimation()
+            case .ended:
+                animator.continueAnimation(withTimingParameters: nil, durationFactor: 0.0)
+            default: break
+            }
+        }
     }
 }

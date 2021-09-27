@@ -22,6 +22,7 @@ enum AnimationType {
     case controlled
     case tapGesture
     case moving
+    case panGesture
 }
 
 struct MyItemModel {
