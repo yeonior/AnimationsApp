@@ -9,53 +9,54 @@ import UIKit
 
 final class MyAnimations: UIViewController {
     
-    private var animationType: AnimationType?
+    private var animationType: AnimationType!
     private var animator: UIViewPropertyAnimator?
     private var isFinished = false
     
-    var smallViewConstraints: [NSLayoutConstraint] = []
-    var fullScreenViewConstraints: [NSLayoutConstraint] = []
+    private var myView: UIView!
+    private var mySlider: UISlider!
+    private var myButton: UIButton!
     
-    private let myView: UIView = {
-        let view = UIView()
-        view.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
-                             y: UIScreen.main.bounds.height / 2 - 50,
-                             width: 100,
-                             height: 100)
-        view.backgroundColor = .systemPink
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 20
-        return view
-    }()
+    private var smallViewConstraints: [NSLayoutConstraint]!
+    private var fullScreenViewConstraints: [NSLayoutConstraint]!
     
-    private let mySlider: UISlider = {
-        let slider = UISlider()
-        slider.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
-                              y: UIScreen.main.bounds.height / 2 + 200,
-                              width: 200,
-                              height: 50)
-        slider.maximumValue = 100.0
-        slider.minimumValue = 0.0
-        slider.value = 0.0
-        return slider
-    }()
-    
-    private let myButton: UIButton = {
-        let button = UIButton()
-        button.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
-                              y: UIScreen.main.bounds.height / 2 + 150,
-                              width: 200,
-                              height: 50)
-        button.setTitle("Change", for: .normal)
-        button.backgroundColor = .systemPurple
-        button.layer.cornerRadius = 16
-        return button
-    }()
-    
+    // MARK: - Load view
     override func loadView() {
         super.loadView()
         
-        view.addSubview(myView)
+        let myView: UIView = {
+            let view = UIView()
+            view.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
+                                 y: UIScreen.main.bounds.height / 2 - 50,
+                                 width: 100,
+                                 height: 100)
+            view.clipsToBounds = true
+            view.layer.cornerRadius = 20
+            return view
+        }()
+        
+        let mySlider: UISlider = {
+            let slider = UISlider()
+            slider.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
+                                  y: UIScreen.main.bounds.height / 2 + 200,
+                                  width: 200,
+                                  height: 50)
+            slider.maximumValue = 100.0
+            slider.minimumValue = 0.0
+            slider.value = 0.0
+            return slider
+        }()
+        
+        let myButton: UIButton = {
+            let button = UIButton()
+            button.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
+                                  y: UIScreen.main.bounds.height / 2 + 150,
+                                  width: 200,
+                                  height: 50)
+            button.setTitle("Change", for: .normal)
+            button.layer.cornerRadius = 16
+            return button
+        }()
         
         fullScreenViewConstraints = [
             myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -70,13 +71,28 @@ final class MyAnimations: UIViewController {
             myView.widthAnchor.constraint(equalToConstant: 100),
             myView.heightAnchor.constraint(equalToConstant: 100)
         ]
+        
+        view.addSubview(myView)
+        if animationType == .controlled {
+            view.addSubview(mySlider)
+        } else if animationType == .constraints {
+            myView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(myButton)
+        }
+        
+        self.myView = myView
+        self.mySlider = mySlider
+        self.myButton = myButton
     }
     
+    // MARK: - View did load
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        myView.backgroundColor = .systemPink
+        myButton.backgroundColor = .systemPurple
         view.backgroundColor = .systemBackground
-        mySlider.addTarget(self, action: #selector(sliderValueDidChange(_:)), for: .valueChanged)
+        
         configureAnimation(with: animationType)
     }
     
@@ -99,10 +115,7 @@ final class MyAnimations: UIViewController {
     }
     
     // MARK: - Animation configuring
-    private func configureAnimation(with type: AnimationType?) {
-        guard let animationType = type else { return }
-        
-//        view.addSubview(myView)
+    private func configureAnimation(with type: AnimationType) {
         
         // choosing animation
         switch animationType {
@@ -194,8 +207,8 @@ final class MyAnimations: UIViewController {
                 self.myView.transform = CGAffineTransform(translationX: 0, y: 100)
             }
         case .controlled:
-            view.addSubview(mySlider)
             myView.layer.cornerRadius = 50
+            mySlider.addTarget(self, action: #selector(sliderValueDidChange(_:)), for: .valueChanged)
             animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut, animations: {
                 self.myView.transform = CGAffineTransform(scaleX: 3.0, y: 3.0).rotated(by: -(3 * .pi) / 2)
                 self.myView.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
@@ -219,12 +232,14 @@ final class MyAnimations: UIViewController {
                 self.myView.backgroundColor = .cyan
             })
         case .constraints:
-            view.addSubview(myButton)
-            myView.translatesAutoresizingMaskIntoConstraints = false
             myButton.addTarget(self, action: #selector(buttonDidTouched), for: .touchUpInside)
             NSLayoutConstraint.activate(smallViewConstraints)
+        case .none:
+            break
         }
     }
+    
+    // MARK: - Objc functions
     
     // animating the constraint changes by button touches
     @objc private func buttonDidTouched() {
