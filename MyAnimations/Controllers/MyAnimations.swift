@@ -13,9 +13,9 @@ final class MyAnimations: UIViewController {
     private var animator: UIViewPropertyAnimator?
     private var isFinished = false
     
-    private var myView: UIView!
-    private var mySlider: UISlider!
-    private var myButton: UIButton!
+    private weak var myView: UIView!
+    private weak var mySlider: UISlider!
+    private weak var myButton: UIButton!
     
     private var smallViewConstraints: [NSLayoutConstraint]!
     private var fullScreenViewConstraints: [NSLayoutConstraint]!
@@ -90,7 +90,9 @@ final class MyAnimations: UIViewController {
         super.viewDidLoad()
         
         myView.backgroundColor = .systemPink
-        myButton.backgroundColor = .systemPurple
+        if let button = myButton {
+            button.backgroundColor = .systemPurple
+        }
         view.backgroundColor = .systemBackground
         
         configureAnimation(with: animationType)
@@ -171,9 +173,7 @@ final class MyAnimations: UIViewController {
             }
         case .reversing:
             UIView.animateKeyframes(withDuration: 1.0, delay: 0.2, options: .autoreverse) {
-                self.myView.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width / 2 - 50, y: 0)
-            } completion: { _ in
-                self.myView.isHidden = true
+                self.myView.transform = CGAffineTransform(rotationAngle: -(3 * .pi) / 2)
             }
         case .sequence:
             UIView.animateKeyframes(withDuration: 2.0, delay: 0.0, options: .calculationModeLinear, animations: {
