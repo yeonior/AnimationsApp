@@ -11,6 +11,17 @@ final class MyAnimations: UIViewController {
     
     private var animationType: AnimationType?
     private var animator: UIViewPropertyAnimator?
+    private var isFinished = false
+    
+    var leadingConstraint: NSLayoutConstraint!
+    var trailingConstraint: NSLayoutConstraint!
+    var topConstraint: NSLayoutConstraint!
+    var bottomConstraint: NSLayoutConstraint!
+    var heightConstraint: NSLayoutConstraint!
+    var widthConstraint: NSLayoutConstraint!
+    var centerXConstraint: NSLayoutConstraint!
+    var centerYConstraint: NSLayoutConstraint!
+    
     private let myView: UIView = {
         let view = UIView()
         view.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
@@ -34,6 +45,33 @@ final class MyAnimations: UIViewController {
         slider.value = 0.0
         return slider
     }()
+    
+    private let myButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
+                              y: UIScreen.main.bounds.height / 2 + 150,
+                              width: 200,
+                              height: 50)
+        button.setTitle("Change", for: .normal)
+        button.backgroundColor = .systemPurple
+        button.layer.cornerRadius = 16
+        return button
+    }()
+    
+    override func loadView() {
+        super.loadView()
+        
+        view.addSubview(myView)
+        
+        leadingConstraint = myView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        trailingConstraint = myView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        topConstraint = myView.topAnchor.constraint(equalTo: view.topAnchor)
+        bottomConstraint = myView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        heightConstraint = myView.heightAnchor.constraint(equalToConstant: 100)
+        widthConstraint = myView.widthAnchor.constraint(equalToConstant: 100)
+        centerXConstraint = myView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        centerYConstraint = myView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +103,7 @@ final class MyAnimations: UIViewController {
     private func configureAnimation(with type: AnimationType?) {
         guard let animationType = type else { return }
         
-        view.addSubview(myView)
+//        view.addSubview(myView)
         
         // choosing animation
         switch animationType {
@@ -181,6 +219,63 @@ final class MyAnimations: UIViewController {
                 self.myView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
                 self.myView.backgroundColor = .cyan
             })
+        case .constraints:
+            view.addSubview(myButton)
+            myView.translatesAutoresizingMaskIntoConstraints = false
+            myButton.addTarget(self, action: #selector(buttonDidTouch), for: .touchUpInside)
+            NSLayoutConstraint.activate([
+                centerXConstraint,
+                centerYConstraint,
+                heightConstraint,
+                widthConstraint
+            ])
+        }
+    }
+    
+    @objc private func buttonDidTouch() {
+        
+        if isFinished == true {
+
+            NSLayoutConstraint.deactivate([
+                leadingConstraint,
+                trailingConstraint,
+                topConstraint,
+                bottomConstraint
+            ])
+
+            NSLayoutConstraint.activate([
+                centerXConstraint,
+                centerYConstraint,
+                heightConstraint,
+                widthConstraint
+            ])
+            
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            } completion: { isFinished in
+                self.isFinished = !isFinished
+            }
+        } else {
+                        
+            NSLayoutConstraint.deactivate([
+                centerXConstraint,
+                centerYConstraint,
+                heightConstraint,
+                widthConstraint
+            ])
+            
+            NSLayoutConstraint.activate([
+                leadingConstraint,
+                trailingConstraint,
+                topConstraint,
+                bottomConstraint
+            ])
+
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            } completion: { isFinished in
+                self.isFinished = isFinished
+            }
         }
     }
     

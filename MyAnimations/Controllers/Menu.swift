@@ -26,7 +26,8 @@ final class Menu: UIViewController {
         MyItemModel(name: "Controlled", imageName: "switch.2", animationType: .controlled),
         MyItemModel(name: "By a tap gesture", imageName: "hand.tap", animationType: .tapGesture),
         MyItemModel(name: "Moving", imageName: "hand.point.up.left", animationType: .moving),
-        MyItemModel(name: "By a pan gesture", imageName: "hand.draw", animationType: .panGesture)
+        MyItemModel(name: "By a pan gesture", imageName: "hand.draw", animationType: .panGesture),
+        MyItemModel(name: "Constraints", imageName: "rectangle.portrait.arrowtriangle.2.outward", animationType: .constraints)
     ]
     
     override func viewDidLoad() {
