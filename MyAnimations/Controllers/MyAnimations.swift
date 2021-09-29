@@ -24,39 +24,30 @@ final class MyAnimations: UIViewController {
     override func loadView() {
         super.loadView()
         
-        let myView: UIView = {
-            let view = UIView()
-            view.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
-                                 y: UIScreen.main.bounds.height / 2 - 50,
-                                 width: 100,
-                                 height: 100)
-            view.clipsToBounds = true
-            view.layer.cornerRadius = 20
-            return view
-        }()
+        let myView = UIView()
+        myView.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
+                              y: UIScreen.main.bounds.height / 2 - 50,
+                              width: 100,
+                              height: 100)
+        myView.clipsToBounds = true
+        myView.layer.cornerRadius = 20
         
-        let mySlider: UISlider = {
-            let slider = UISlider()
-            slider.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
-                                  y: UIScreen.main.bounds.height / 2 + 200,
-                                  width: 200,
-                                  height: 50)
-            slider.maximumValue = 100.0
-            slider.minimumValue = 0.0
-            slider.value = 0.0
-            return slider
-        }()
+        let mySlider = UISlider()
+        mySlider.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
+                                y: UIScreen.main.bounds.height / 2 + 200,
+                                width: 200,
+                                height: 50)
+        mySlider.maximumValue = 100.0
+        mySlider.minimumValue = 0.0
+        mySlider.value = 0.0
         
-        let myButton: UIButton = {
-            let button = UIButton()
-            button.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
-                                  y: UIScreen.main.bounds.height / 2 + 150,
-                                  width: 200,
-                                  height: 50)
-            button.setTitle("Change", for: .normal)
-            button.layer.cornerRadius = 16
-            return button
-        }()
+        let myButton = UIButton()
+        myButton.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
+                                y: UIScreen.main.bounds.height / 2 + 150,
+                                width: 200,
+                                height: 50)
+        myButton.setTitle("Change", for: .normal)
+        myButton.layer.cornerRadius = 16
         
         fullScreenViewConstraints = [
             myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

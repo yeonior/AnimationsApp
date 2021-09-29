@@ -35,7 +35,7 @@ final class MyItem: UICollectionViewCell {
         label.textAlignment = .center
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.7
+        label.minimumScaleFactor = 0.6
         label.clipsToBounds = true
         return label
     }()
