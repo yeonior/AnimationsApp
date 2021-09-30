@@ -268,7 +268,9 @@ final class MyAnimations: UIViewController {
             self.myView.layer.cornerRadius = 0
         }
         animator.addCompletion { _ in
-            self.myView.alpha = 0.0
+            UIView.animate(withDuration: 0.25) {
+                self.myView.alpha = 0.0
+            }
         }
         animator.startAnimation()
     }
