@@ -16,6 +16,7 @@ final class MyAnimations: UIViewController {
     private weak var myView: UIView!
     private weak var mySlider: UISlider!
     private weak var myButton: UIButton!
+    private var mySubview: UIView!
     
     private var smallViewConstraints: [NSLayoutConstraint]!
     private var fullScreenViewConstraints: [NSLayoutConstraint]!
@@ -49,6 +50,14 @@ final class MyAnimations: UIViewController {
         myButton.setTitle("Change", for: .normal)
         myButton.layer.cornerRadius = 16
         
+        let image = UIImage(systemName: "arrow.up")
+        let mySubview = UIImageView(image: image)
+        mySubview.frame = CGRect(x: 25,
+                              y: 25,
+                              width: 50,
+                              height: 50)
+        mySubview.clipsToBounds = true
+        
         fullScreenViewConstraints = [
             myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             myView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -69,11 +78,14 @@ final class MyAnimations: UIViewController {
         } else if animationType == .constraints {
             myView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(myButton)
+        } else if animationType == .panGesture {
+            myView.addSubview(mySubview)
         }
         
         self.myView = myView
         self.mySlider = mySlider
         self.myButton = myButton
+        self.mySubview = mySubview
     }
     
     // MARK: - View did load
@@ -83,6 +95,9 @@ final class MyAnimations: UIViewController {
         myView.backgroundColor = .systemPink
         if let button = myButton {
             button.backgroundColor = .systemPurple
+        }
+        if mySubview != nil, animationType == .panGesture {
+            mySubview.tintColor = .white
         }
         view.backgroundColor = .systemBackground
         
