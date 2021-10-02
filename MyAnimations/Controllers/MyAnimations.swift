@@ -12,11 +12,13 @@ final class MyAnimations: UIViewController {
     private var animationType: AnimationType!
     private var animator: UIViewPropertyAnimator?
     private var isFinished = false
+    private var timer = Timer()
+    private var timerCount = 0
     
     private weak var myView: UIView!
     private weak var mySlider: UISlider!
     private weak var myButton: UIButton!
-    private var mySubview: UIView!
+    private var mySubview: UIImageView!
     
     private var smallViewConstraints: [NSLayoutConstraint]!
     private var fullScreenViewConstraints: [NSLayoutConstraint]!
@@ -50,8 +52,7 @@ final class MyAnimations: UIViewController {
         myButton.setTitle("Change", for: .normal)
         myButton.layer.cornerRadius = 16
         
-        let image = UIImage(systemName: "arrow.up")
-        let mySubview = UIImageView(image: image)
+        let mySubview = UIImageView()
         mySubview.frame = CGRect(x: 25,
                               y: 25,
                               width: 50,
@@ -78,7 +79,7 @@ final class MyAnimations: UIViewController {
         } else if animationType == .constraints {
             myView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(myButton)
-        } else if animationType == .panGesture {
+        } else if animationType == .panGesture || animationType == .spring {
             myView.addSubview(mySubview)
         }
         
@@ -96,8 +97,14 @@ final class MyAnimations: UIViewController {
         if let button = myButton {
             button.backgroundColor = .systemPurple
         }
-        if mySubview != nil, animationType == .panGesture {
+        if mySubview != nil {
             mySubview.tintColor = .white
+            if animationType == .spring {
+                mySubview.image = UIImage(systemName: "3.circle")
+                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(changeImage), userInfo: nil, repeats: true)
+            } else if animationType == .panGesture {
+                mySubview.image = UIImage(systemName: "arrow.up")
+            }
         }
         view.backgroundColor = .systemBackground
         
@@ -206,7 +213,7 @@ final class MyAnimations: UIViewController {
             })
         case .spring:
             UIView.animate(withDuration: 14.0,
-                           delay: 1.0,
+                           delay: 3.0,
                            usingSpringWithDamping: 0.07,
                            initialSpringVelocity: 1.0,
                            options: .curveLinear) {
@@ -315,6 +322,19 @@ final class MyAnimations: UIViewController {
                 animator.continueAnimation(withTimingParameters: nil, durationFactor: 0.0)
             default: break
             }
+        }
+    }
+    
+    // changing an image with countdown
+    @objc private func changeImage() {
+        timerCount += 1
+        switch timerCount {
+        case 1: mySubview.image = UIImage(systemName: "2.circle")
+        case 2: mySubview.image = UIImage(systemName: "1.circle")
+        case 3:
+            mySubview.image = nil
+            timer.invalidate()
+        default: break
         }
     }
 }
