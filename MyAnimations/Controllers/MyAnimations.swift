@@ -304,7 +304,28 @@ final class MyAnimations: UIViewController {
             let newPosition = panGesture.translation(in: self.view)
             let currentX = myView.center.x
             let currentY = myView.center.y
-            myView.center = CGPoint(x: currentX + newPosition.x, y: currentY + newPosition.y)
+            var safetyX: CGFloat = 0.0
+            var safetyY: CGFloat = 0.0
+            
+            switch currentX {
+            case ...50.0:
+                safetyX = 50.0
+            case (view.bounds.maxX - 50.0)...:
+                safetyX = view.bounds.maxX - 50.0
+            default:
+                safetyX = myView.center.x
+            }
+            
+            switch currentY {
+            case ...(statusBarHeight + navigationBarHeight + 50):
+                safetyY = statusBarHeight + navigationBarHeight + 50.0
+            case (view.bounds.maxY - bottomSafeAreaHeight - 50)...:
+                safetyY = view.bounds.maxY - bottomSafeAreaHeight - 50
+            default:
+                safetyY = myView.center.y
+            }
+            
+            myView.center = CGPoint(x: safetyX + newPosition.x, y: safetyY + newPosition.y)
             panGesture.setTranslation(.zero, in: self.view)
             animator.startAnimation()
         } else {
@@ -336,5 +357,23 @@ final class MyAnimations: UIViewController {
             timer.invalidate()
         default: break
         }
+    }
+}
+
+// MARK: - Extensions
+extension UIViewController {
+    
+    // status bar and navigation bar heights
+    
+    var statusBarHeight: CGFloat {
+        return view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
+    }
+    
+    var navigationBarHeight: CGFloat {
+        return navigationController?.navigationBar.frame.height ?? 0.0
+    }
+    
+    var bottomSafeAreaHeight: CGFloat {
+        return UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0.0
     }
 }
