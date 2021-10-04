@@ -16,48 +16,62 @@ final class MyAnimations: UIViewController {
     private var timerCount = 0
     
     private weak var myView: UIView!
-    private weak var mySlider: UISlider!
-    private weak var myButton: UIButton!
+    private var mySlider: UISlider!
+    private var myButton: UIButton!
     private var mySubview: UIImageView!
     
     private var smallViewConstraints: [NSLayoutConstraint]!
     private var fullScreenViewConstraints: [NSLayoutConstraint]!
     
+    // MARK: - Init
+    init(title: String, animationType: AnimationType) {
+        super.init(nibName: nil, bundle: nil)
+        self.title = title
+        self.animationType = animationType
+        self.animator = nil
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Load view
     override func loadView() {
         super.loadView()
         
-        let myView = UIView()
+        let myView = UIView(frame: .zero)
         myView.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 50,
                               y: UIScreen.main.bounds.height / 2 - 50,
                               width: 100,
                               height: 100)
-        myView.clipsToBounds = true
-        myView.layer.cornerRadius = 20
         
         let mySlider = UISlider()
         mySlider.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
                                 y: UIScreen.main.bounds.height / 2 + 200,
                                 width: 200,
                                 height: 50)
-        mySlider.maximumValue = 100.0
-        mySlider.minimumValue = 0.0
-        mySlider.value = 0.0
         
         let myButton = UIButton()
         myButton.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 100,
                                 y: UIScreen.main.bounds.height / 2 + 150,
                                 width: 200,
                                 height: 50)
-        myButton.setTitle("Change", for: .normal)
-        myButton.layer.cornerRadius = 16
         
         let mySubview = UIImageView()
         mySubview.frame = CGRect(x: 25,
                               y: 25,
                               width: 50,
                               height: 50)
-        mySubview.clipsToBounds = true
+        
+        view.addSubview(myView)
+        if animationType == .controlled {
+            view.addSubview(mySlider)
+        } else if animationType == .constraints {
+            myView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(myButton)
+        } else if animationType == .panGesture || animationType == .spring {
+            myView.addSubview(mySubview)
+        }
         
         fullScreenViewConstraints = [
             myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -73,16 +87,6 @@ final class MyAnimations: UIViewController {
             myView.heightAnchor.constraint(equalToConstant: 100)
         ]
         
-        view.addSubview(myView)
-        if animationType == .controlled {
-            view.addSubview(mySlider)
-        } else if animationType == .constraints {
-            myView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(myButton)
-        } else if animationType == .panGesture || animationType == .spring {
-            myView.addSubview(mySubview)
-        }
-        
         self.myView = myView
         self.mySlider = mySlider
         self.myButton = myButton
@@ -93,7 +97,21 @@ final class MyAnimations: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemBackground
+        
+        myView.clipsToBounds = true
+        myView.layer.cornerRadius = 20
         myView.backgroundColor = .systemPink
+        
+        mySlider.maximumValue = 100.0
+        mySlider.minimumValue = 0.0
+        mySlider.value = 0.0
+        
+        myButton.setTitle("Change", for: .normal)
+        myButton.layer.cornerRadius = 16
+        
+        mySubview.clipsToBounds = true
+        
         if let button = myButton {
             button.backgroundColor = .systemPurple
         }
@@ -106,27 +124,15 @@ final class MyAnimations: UIViewController {
                 mySubview.image = UIImage(systemName: "arrow.up")
             }
         }
-        view.backgroundColor = .systemBackground
-        
+                
         configureAnimation(with: animationType)
     }
     
+    // MARK: - View will disappear
     // stopping the controlled animation before quit
     override func viewWillDisappear(_ animated: Bool) {
         guard let animator = animator else { return }
         animator.stopAnimation(true)
-    }
-    
-    // MARK: - Init
-    init(title: String, animationType: AnimationType) {
-        super.init(nibName: nil, bundle: nil)
-        self.title = title
-        self.animationType = animationType
-        self.animator = nil
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Animation configuring
